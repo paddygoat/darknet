@@ -1,0 +1,14 @@
+data/obj/AB00032.jpg
+data/obj/AB00033.jpg
+data/obj/AB00034.jpg
+data/obj/AB00035.jpg
+data/obj/AB00036.jpg
+data/obj/AB00037.jpg
+data/obj/AB00038.jpg
+data/obj/AB00039.jpg
+data/obj/AB00040.jpg
+data/obj/AB00041.jpg
+data/obj/AB00042.jpg
+data/obj/AB00043.jpg
+data/obj/AB00044.jpg
+data/obj/AB00045.jpg
