@@ -376,20 +376,20 @@ It will create `.txt`-file for each `.jpg`-image-file - in the same directory an
 The final directory structure on Github should look like this:
    ```
   build\darknet\x64\data\obj\
-                             ..img1.jpg
-			     ..img1.txt
-			     ..img2.jpg
-			     ..img2.txt
+  				..img1.jpg
+				..img1.txt
+				..img2.jpg
+				..img2.txt
   build\darknet\x64\data\
-  			     ..test.txt
-			     ..valid.txt
-			     ..train.txt
-			     ..obj.data
-			     ..obj.names
+  				..test.txt
+				..valid.txt
+				..train.txt
+				..obj.data
+				..obj.names
   build\darknet\x64\data\cfg\
-                             ..yolo-obj.cfg
+  				..yolo-obj.cfg
   build\darknet\x64\
-                             ..darknet53.conv.74
+  				..darknet53.conv.74
    ```
 Be sure to fork this repository - It's much better to get all your custom data organised properly on your own forked Github repository before cloniung it to AWS as the thousands of small files will load quicker than direct SSH, saving time and money.
 
