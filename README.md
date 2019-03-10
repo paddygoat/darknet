@@ -335,7 +335,8 @@ Training Yolo v3:
   ```
   classes= 2
   train  = data/train.txt
-  valid  = data/test.txt
+  valid  = data/valid.txt
+  test = data/test.txt
   names = data/obj.names
   backup = backup/
   ```
@@ -366,24 +367,46 @@ It will create `.txt`-file for each `.jpg`-image-file - in the same directory an
   data/obj/img1.jpg
   data/obj/img2.jpg
   data/obj/img3.jpg
+  
   ```
+6.1 Repeat the process with `valid.txt` and `test.txt` .`test.txt` can have relativey few images as it's used for creating mAP values. The same images should NOT be used in `valid.txt`,`train.txt` and `test.txt`.
 
-7. Download pre-trained weights for the convolutional layers (154 MB): https://pjreddie.com/media/files/darknet53.conv.74 and put to the directory `build\darknet\x64`
+7. Download pre-trained weights for the convolutional layers (154 MB): https://pjreddie.com/media/files/darknet53.conv.74 and put to the directory `build\darknet\x64` on Github.
 
-8. Start training by using the command line: `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74`
+The final directory structure on Github should look like this:
+   ```
+  build\darknet\x64\data\obj\
+                             ..img1.jpg
+			     ..img1.txt
+			     ..img2.jpg
+			     ..img2.txt
+  build\darknet\x64\data\
+  			     ..test.txt
+			     ..valid.txt
+			     ..train.txt
+			     ..obj.data
+			     ..obj.names
+  build\darknet\x64\data\cfg\
+                             ..yolo-obj.cfg
+  build\darknet\x64\
+                             ..darknet53.conv.74
+   ```
+Be sure to fork this repository - It's much better to get all your custom data organised properly on your own forked Github repository before cloniung it to AWS as the thousands of small files will load quicker than direct SSH, saving time and money.
+
+8. Start training by using the command line: `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74`
      
-   To train on Linux use command: `./darknet detector train data/obj.data yolo-obj.cfg darknet53.conv.74` (just use `./darknet` instead of `darknet.exe`)
+   To train on Linux use command: `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74` (just use `./darknet` instead of `darknet.exe`)
      
    * (file `yolo-obj_last.weights` will be saved to the `build\darknet\x64\backup\` for each 100 iterations)
    * (file `yolo-obj_xxxx.weights` will be saved to the `build\darknet\x64\backup\` for each 1000 iterations)
-   * (to disable Loss-Window use `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74 -dont_show`, if you train on computer without monitor like a cloud Amazon EC2)
-   * (to see the mAP & Loss-chart during training on remote server without GUI, use command `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74 -dont_show -mjpeg_port 8090 -map` then open URL `http://ip-address:8090` in Chrome/Firefox browser)
+   * (to disable Loss-Window use `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74 -dont_show`, if you train on computer without monitor like a cloud Amazon EC2)
+   * (to see the mAP & Loss-chart during training on remote server without GUI, use command `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74 -dont_show -mjpeg_port 8090 -map` then open URL `http://ip-address:8090` in Chrome/Firefox browser)
 
-8.1. For training with mAP (mean average precisions) calculation for each 4 Epochs (set `valid=valid.txt` or `train.txt` in `obj.data` file) and run: `darknet.exe detector train data/obj.data yolo-obj.cfg darknet53.conv.74 -map`
+8.1. For training with mAP (mean average precisions) calculation for each 4 Epochs (set `valid=valid.txt` or `train.txt` in `obj.data` file) and run: `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74 -map`
 
 9. After training is complete - get result `yolo-obj_final.weights` from path `build\darknet\x64\backup\`
 
- * After each 100 iterations you can stop and later start training from this point. For example, after 2000 iterations you can stop training, and later just copy `yolo-obj_2000.weights` from `build\darknet\x64\backup\` to `build\darknet\x64\` and start training using: `darknet.exe detector train data/obj.data yolo-obj.cfg yolo-obj_2000.weights`
+ * After each 100 iterations you can stop and later start training from this point. For example, after 2000 iterations you can stop training, and later just copy `yolo-obj_2000.weights` from `build\darknet\x64\backup\` to `build\darknet\x64\` and start training using: `./darknet detector train data/obj.data cfg/yolo-obj.cfg yolo-obj_2000.weights`
 
     (in the original repository https://github.com/pjreddie/darknet the weights-file is saved only once every 10 000 iterations `if(iterations > 1000)`)
 
@@ -393,7 +416,7 @@ It will create `.txt`-file for each `.jpg`-image-file - in the same directory an
  
  **Note:** If you changed width= or height= in your cfg-file, then new width and height must be divisible by 32.
  
- **Note:** After training use such command for detection: `darknet.exe detector test data/obj.data yolo-obj.cfg yolo-obj_8000.weights`
+ **Note:** After training use such command for detection: `./darknet detector test data/obj.data cfg/yolo-obj.cfg yolo-obj_8000.weights`
  
   **Note:** if error `Out of memory` occurs then in `.cfg`-file you should increase `subdivisions=16`, 32 or 64: [link](https://github.com/AlexeyAB/darknet/blob/0039fd26786ab5f71d5af725fc18b3f521e7acfd/cfg/yolov3.cfg#L4)
  
