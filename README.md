@@ -400,20 +400,22 @@ Then upload to darknet/data/obj and:
      
    To train on Linux use command: `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74` (just use `./darknet` instead of `darknet.exe`)
      
-   * (file `yolo-obj_last.weights` will be saved to the `build\darknet\x64\backup\` for each 100 iterations)
-   * (file `yolo-obj_xxxx.weights` will be saved to the `build\darknet\x64\backup\` for each 1000 iterations)
+   * (file `yolo-obj_last.weights` will be saved to the `darknet/backup\` for each 100 iterations)
+   * (file `yolo-obj_xxxx.weights` will be saved to the `darknet/backup\` for each 1000 iterations)
    * (to disable Loss-Window use `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74 -dont_show`, if you train on computer without monitor like a cloud Amazon EC2)
    * (to see the mAP & Loss-chart during training on remote server without GUI, use command `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74 -dont_show -mjpeg_port 8090 -map` then open URL `http://ip-address:8090` in Chrome/Firefox browser)
 
 8.1. For training with mAP (mean average precisions) calculation for each 4 Epochs (set `valid=valid.txt` or `train.txt` in `obj.data` file) and run: `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74 -map`
 
-9. After training is complete - get result `yolo-obj_final.weights` from path `build\darknet\x64\backup\`
+9. After training is complete - get result `yolo-obj_final.weights` from path `darknet/backup`
 
- * After each 100 iterations you can stop and later start training from this point. For example, after 2000 iterations you can stop training, and later just copy `yolo-obj_2000.weights` from `build\darknet\x64\backup\` to `build\darknet\x64\` and start training using: `./darknet detector train data/obj.data cfg/yolo-obj.cfg yolo-obj_2000.weights`
+ * After each 100 iterations you can stop and later start training from this point. For example, after 2000 iterations you can stop training, and later just copy `yolo-obj_2000.weights` from `darknet/backup` to ``darknet` and start training using: `./darknet detector train data/obj.data cfg/yolo-obj.cfg yolo-obj_2000.weights`
 
     (in the original repository https://github.com/pjreddie/darknet the weights-file is saved only once every 10 000 iterations `if(iterations > 1000)`)
 
  * Also you can get result earlier than all 45000 iterations.
+ 
+ **Note:** During labelling, `class = 0` should be used first, so if there is only one class, then that should be designated '0'.
  
  **Note:** If during training you see `nan` values for `avg` (loss) field - then training goes wrong, but if `nan` is in some other lines - then training goes well.
  
