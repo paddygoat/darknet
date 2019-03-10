@@ -1,0 +1,2 @@
+data/obj/AA00501.jpg
+data/obj/AA00502.jpg
