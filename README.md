@@ -391,7 +391,10 @@ The final directory structure on Github should look like this:
   build\darknet\x64\
   				..darknet53.conv.74
    ```
-Be sure to fork this repository - It's much better to get all your custom data organised properly on your own forked Github repository before cloniung it to AWS as the thousands of small files will load quicker than direct SSH, saving time and money.
+To copy 989 images of slus into the obj directory:
+	$ wget -P /home/ubuntu/darknet/data/obj https://drive.google.com/open?id=1h84c-EvdR9pG3oGbiJYk8D-5sYwzJim6
+	$ cd darknet/data/obj
+	$ tar -xvzf slug_images_and_txt_files_01.tar.gz
 
 8. Start training by using the command line: `./darknet detector train data/obj.data cfg/yolo-obj.cfg darknet53.conv.74`
      
