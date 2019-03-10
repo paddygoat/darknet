@@ -367,8 +367,8 @@ It will create `.txt`-file for each `.jpg`-image-file - in the same directory an
   data/obj/img1.jpg
   data/obj/img2.jpg
   data/obj/img3.jpg
-  
   ```
+
 6.1 Repeat the process with `valid.txt` and `test.txt` .`test.txt` can have relativey few images as it's used for creating mAP values. The same images should NOT be used in `valid.txt`,`train.txt` and `test.txt`.
 
 7. Download pre-trained weights for the convolutional layers (154 MB): https://pjreddie.com/media/files/darknet53.conv.74 and put to the directory `build\darknet\x64` on Github.
