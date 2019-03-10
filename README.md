@@ -391,8 +391,8 @@ The final directory structure on Github should look like this:
   build\darknet\x64\
   				..darknet53.conv.74
    ```
-To copy 989 images of slus into the obj directory:
-	$ wget -P /home/ubuntu/darknet/data/obj https://drive.google.com/open?id=1h84c-EvdR9pG3oGbiJYk8D-5sYwzJim6
+To download 989 images of slugs:  https://drive.google.com/open?id=1h84c-EvdR9pG3oGbiJYk8D-5sYwzJim6
+Then upload to darknet/data/obj and:
 	$ cd darknet/data/obj
 	$ tar -xvzf slug_images_and_txt_files_01.tar.gz
 
