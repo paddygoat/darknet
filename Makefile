@@ -16,12 +16,11 @@ ARCH= -gencode arch=compute_30,code=sm_30 \
       -gencode arch=compute_35,code=sm_35 \
       -gencode arch=compute_50,code=[sm_50,compute_50] \
       -gencode arch=compute_52,code=[sm_52,compute_52] \
-	  -gencode arch=compute_61,code=[sm_61,compute_61]
-
+      -gencode arch=compute_61,code=[sm_61,compute_61]
 OS := $(shell uname)
 
-# Tesla V100
-ARCH= -gencode arch=compute_70,code=[sm_70,compute_70]
+# Tesla V100 (AWS)
+# ARCH= -gencode arch=compute_70,code=[sm_70,compute_70]
 
 # GeForce RTX 2080 Ti, RTX 2080, RTX 2070, Quadro RTX 8000, Quadro RTX 6000, Quadro RTX 5000, Tesla T4, XNOR Tensor Cores
 # ARCH= -gencode arch=compute_75,code=[sm_75,compute_75]
@@ -39,8 +38,7 @@ ARCH= -gencode arch=compute_70,code=[sm_70,compute_70]
 # ARCH= -gencode arch=compute_53,code=[sm_53,compute_53]
 
 # For Jetson Tx2 or Drive-PX2 uncomment:
-# ARCH= -gencode arch=compute_62,code=[sm_62,compute_62]
-
+ARCH= -gencode arch=compute_62,code=[sm_62,compute_62]
 
 VPATH=./src/
 EXEC=darknet
